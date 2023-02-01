@@ -21,7 +21,8 @@
       "@components/*": ["./src/components/*"],
       "@myTypes/*": ["src/myTypes/*"],
       "@utils/*": ["./src/utils/*"],
-      "@contexts/*": ["./src/contexts/*"]
+      "@contexts/*": ["./src/contexts/*"],
+      "@icons/*": ["./src/icons/*"]
     }
   },
   "include": ["src"],

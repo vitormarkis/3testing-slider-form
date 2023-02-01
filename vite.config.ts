@@ -12,6 +12,7 @@ export default defineConfig({
       "@utils": path.resolve(__dirname, "src/utils"),
       "@reducers": path.resolve(__dirname, "src/reducers"),
       "@contexts": path.resolve(__dirname, "src/contexts"),
+      "@icons": path.resolve(__dirname, "src/icons"),
     },
   },
 })
