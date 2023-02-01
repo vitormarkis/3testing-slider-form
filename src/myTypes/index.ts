@@ -10,21 +10,22 @@ export type UserProps = {
 }
 
 export type RootState = UserProps & {
-  stage: StageProps
+  stage: StageProps,
+  users: UserProps[]
 }
 
-export type FormReducerTypes = "nextStage" | "registerUser" | "setName" | "setAge" | "setCountry" | "setCep"
+export type FormReducerTypes = "nextStage" | "registerUser" | "setInputField"
 
 export type ActionProps<T> = {
   type: T
-  payload?: RootState | Partial<RootState> | string
+  payload?: any
 }
 
 export interface onChangeProps<T> {
-  name: (e: T) => void
-  age: (e: T) => void
-  country: (e: T) => void
-  cep: (e: T) => void
+  name: (event: T) => void
+  age: (event: T) => void
+  country: (event: T) => void
+  cep: (event: T) => void
 }
 
 export type onChangeKeys = keyof onChangeProps<ChangeEvent<HTMLInputElement>>

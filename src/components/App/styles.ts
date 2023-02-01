@@ -55,7 +55,7 @@ export const Container = styled.div`
         flex-direction: column;
         gap: 5rem;
         flex: 1 0 100%;
-        transition: all 1s ease-out;
+        transition: all 600ms ease-in;
 
         &.second-stage {
           transform: translateX(calc(-100% - 5rem));

@@ -1,5 +1,14 @@
-import { cleanFields } from "@utils/index"
-import { ActionProps, FormReducerTypes, RootState } from "src/myTypes/index"
+import { cleanFields, createNewUserObject } from "@utils/index"
+import { ActionProps, FormReducerTypes, RootState, UserProps } from "src/myTypes/index"
+
+export const initialState: RootState = {
+  name: "",
+  age: "",
+  country: "",
+  cep: "",
+  stage: 0,
+  users: [],
+}
 
 export function reducer(state: RootState, action: ActionProps<FormReducerTypes>): RootState {
   switch (action.type) {
@@ -8,19 +17,13 @@ export function reducer(state: RootState, action: ActionProps<FormReducerTypes>)
 
     case "registerUser":
       const clean_fields = cleanFields()
-      return { ...state, ...clean_fields, stage: 0 }
+      const newUser = createNewUserObject(state)
+      return { ...state, ...clean_fields, stage: 0, users: [...state.users, newUser] }
 
-    case "setName":
-      return { ...state, name: action.payload as string }
-
-    case "setAge":
-      return { ...state, age: action.payload as string }
-
-    case "setCountry":
-      return { ...state, country: action.payload as string }
-
-    case "setCep":
-      return { ...state, cep: action.payload as string }
+    case "setInputField":
+      const key: keyof UserProps = action.payload.field
+      const value: string = action.payload.value
+      return { ...state, [key]: value }
 
     default:
       return state

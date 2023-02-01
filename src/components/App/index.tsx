@@ -1,31 +1,37 @@
-import { reducer } from "@reducers/index"
-import { ChangeEvent, useReducer } from "react"
-import { onChangeKeys, onChangeProps, RootState } from "src/myTypes/index"
+import { initialState, reducer } from "@reducers/index"
+import { ChangeEvent, useEffect, useReducer } from "react"
 import { Container } from "./styles"
-
-const initialState: RootState = {
-  name: "",
-  age: "",
-  country: "",
-  cep: "",
-  stage: 0,
-}
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  const handleChangeInput: onChangeProps<ChangeEvent<HTMLInputElement>> = {
-    name: e => dispatch({ type: "setName", payload: e.target.value }),
-    age: e => dispatch({ type: "setAge", payload: e.target.value }),
-    country: e => dispatch({ type: "setCountry", payload: e.target.value }),
-    cep: e => dispatch({ type: "setCep", payload: e.target.value }),
+  // const handleChangeInput: onChangeProps<ChangeEvent<HTMLInputElement>> = {
+  //   name: event => dispatch({ type: "setName", payload: event.target.value }),
+  //   age: event => dispatch({ type: "setAge", payload: event.target.value }),
+  //   country: event => dispatch({ type: "setCountry", payload: event.target.value }),
+  //   cep: event => dispatch({ type: "setCep", payload: event.target.value }),
+  // }
+
+  const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
+    dispatch({
+      type: "setInputField",
+      payload: {
+        field: event.target.name,
+        value: event.target.value,
+      },
+    })
   }
+
   function handleActionButton() {
     if (state.stage === 0) dispatch({ type: "nextStage" })
     if (state.stage === 1) dispatch({ type: "registerUser" })
     return
   }
 
+  useEffect(() => {
+    console.log(state)
+  }, [state.users]);
+  
   return (
     <Container>
       {/* <i>x</i> */}
@@ -38,37 +44,13 @@ function App() {
       <div className="frame-container">
         <div className="frame">
           <div className={`one ${state.stage === 1 ? "second-stage" : ""}`}>
-            <input
-              value={state.name}
-              name="name"
-              onChange={(e: ChangeEvent<HTMLInputElement>) => handleChangeInput[e.target.name as onChangeKeys](e)}
-              type="text"
-              placeholder="Nome..."
-            />
-            <input
-              value={state.age}
-              name="age"
-              onChange={(e: ChangeEvent<HTMLInputElement>) => handleChangeInput[e.target.name as onChangeKeys](e)}
-              type="text"
-              placeholder="Idade..."
-            />
+            <input value={state.name} name="name" onChange={handleOnChange} type="text" placeholder="Nome..." />
+            <input value={state.age} name="age" onChange={handleOnChange} type="text" placeholder="Idade..." />
           </div>
 
           <div className={`two ${state.stage === 1 ? "second-stage" : ""}`}>
-            <input
-              value={state.country}
-              name="country"
-              onChange={(e: ChangeEvent<HTMLInputElement>) => handleChangeInput[e.target.name as onChangeKeys](e)}
-              type="text"
-              placeholder="País..."
-            />
-            <input
-              value={state.cep}
-              name="cep"
-              onChange={(e: ChangeEvent<HTMLInputElement>) => handleChangeInput[e.target.name as onChangeKeys](e)}
-              type="text"
-              placeholder="CEP..."
-            />
+            <input value={state.country} name="country" onChange={handleOnChange} type="text" placeholder="País..." />
+            <input value={state.cep} name="cep" onChange={handleOnChange} type="text" placeholder="CEP..." />
           </div>
         </div>
       </div>
