@@ -2,15 +2,19 @@ import { ChangeEvent } from "react"
 
 export type StageProps = 0 | 1
 
-export type UserProps = {
+export type UserFields = {
   name: string
   age: string
   country: string
   cep: string
 }
 
-export type RootState = UserProps & {
-  stage: StageProps,
+export type UserProps = UserFields & {
+  id: number
+}
+
+export type RootState = UserFields & {
+  stage: StageProps
   users: UserProps[]
 }
 

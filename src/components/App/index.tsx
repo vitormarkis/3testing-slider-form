@@ -29,7 +29,8 @@ function App() {
   }
 
   useEffect(() => {
-    console.log(state)
+    console.log(state.users)
+    return
   }, [state.users]);
   
   return (
