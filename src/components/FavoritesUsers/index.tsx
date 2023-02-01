@@ -13,7 +13,7 @@ const FavoritesUsers: React.FC = () => {
     <Container>
         {state.favoriteUsers
           ? favoriteUsersObject.map(user => (
-              <Content>
+              <Content key={user.id}>
                 <Name>{user.name}</Name>
                 <Age>{user.age}</Age>
                 <Country>{user.country}</Country>

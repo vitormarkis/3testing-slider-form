@@ -30,3 +30,19 @@ export function getFavoriteUsersObject(users: UserProps[], ids: number[]): UserP
     if (ids.includes(user.id)) return { ...user }
   })
 }
+
+export function toggleFavoriteUsers(favoriteUsers: number[], userID: number): number[] {
+  if (favoriteUsers.includes(userID)) return favoriteUsers.filter(id => id !== userID)
+  return [...favoriteUsers, userID]
+}
+
+export function getFilteredUsers(users: UserProps[], userID: number): UserProps[] {
+  return users.filter(user => user.id !== userID)
+}
+
+export function getUpdateFavoriteUserID(state: RootState): number[] {
+  return state.favoriteUsers.filter(id => {
+    const usersID = state.users.map(user => user.id)
+    if (usersID.includes(id)) return id
+  })
+}

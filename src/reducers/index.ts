@@ -1,4 +1,4 @@
-import { cleanFields, createNewUserObject } from "@utils/index"
+import { cleanFields, createNewUserObject, getFilteredUsers, toggleFavoriteUsers } from "@utils/index"
 import { ActionProps, FormReducerTypes, RootState, UserFields } from "src/myTypes/index"
 
 export const initialState: RootState = {
@@ -40,6 +40,17 @@ export function reducer(state: RootState, action: ActionProps<FormReducerTypes>)
       const key: keyof UserFields = action.payload.field
       const value: string = action.payload.value
       return { ...state, [key]: value }
+
+    case "toggleFavorite":
+      const updatedFavoriteUsers = toggleFavoriteUsers(state.favoriteUsers, action.payload)
+      return { ...state, favoriteUsers: updatedFavoriteUsers }
+
+    case "setFavoriteUsers":
+      return { ...state, favoriteUsers: action.payload }
+
+    case "deleteUser":
+      const filteredUsers = getFilteredUsers(state.users, action.payload)
+      return { ...state, users: filteredUsers }
 
     default:
       return state

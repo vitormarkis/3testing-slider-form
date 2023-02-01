@@ -19,7 +19,13 @@ export type RootState = UserFields & {
   favoriteUsers: number[]
 }
 
-export type FormReducerTypes = "nextStage" | "registerUser" | "setInputField"
+export type FormReducerTypes =
+  | "nextStage"
+  | "registerUser"
+  | "setInputField"
+  | "toggleFavorite"
+  | "deleteUser"
+  | "setFavoriteUsers"
 
 export type ActionProps<T> = {
   type: T
@@ -36,7 +42,7 @@ export interface onChangeProps<T> {
 export type onChangeKeys = keyof onChangeProps<ChangeEvent<HTMLInputElement>>
 
 export interface GlobalStoreProps {
-  state: RootState,
+  state: RootState
   dispatch: React.Dispatch<ActionProps<FormReducerTypes>>
 }
 
