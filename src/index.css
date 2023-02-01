@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 25%;
+  font-family: sans-serif;
+}
+
+body {
+  font-size: 4rem;
+  height: 100vh;
+  background-color: #222;
+}
+
+button {
+  border: none;
+}
+
+button,
+input {
+  outline: none;
+}
+
+ul {
+  list-style: none;
+}
