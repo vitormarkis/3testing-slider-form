@@ -24,3 +24,9 @@ export function getLastID(users: UserProps[]): number {
   const IDs = users.map(user => user.id)
   return Math.max(...IDs)
 }
+
+export function getFavoriteUsersObject(users: UserProps[], ids: number[]): UserProps[] {
+  return users.filter(user => {
+    if (ids.includes(user.id)) return { ...user }
+  })
+}

@@ -15,6 +15,14 @@ body {
   background-color: #222;
 }
 
+#root {
+  height: 100%;
+}
+
+button, input, body {
+  font-family: Inter;
+}
+
 button {
   border: none;
 }

@@ -7,7 +7,23 @@ export const initialState: RootState = {
   country: "",
   cep: "",
   stage: 0,
-  users: [],
+  favoriteUsers: [1],
+  users: [
+    {
+      id: 1,
+      name: "Rodrigo Silva",
+      age: "20",
+      country: "Brasil",
+      cep: "748512-800",
+    },
+    {
+      id: 2,
+      name: "Cláudio Miqueias",
+      age: "40",
+      country: "Brasil",
+      cep: "1782785-800",
+    },
+  ],
 }
 
 export function reducer(state: RootState, action: ActionProps<FormReducerTypes>): RootState {
